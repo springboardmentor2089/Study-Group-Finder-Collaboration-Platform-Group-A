@@ -1,0 +1,658 @@
+.messaging-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Changed from 600px to 100% */
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  border: 1px solid #eef2f6;
+}
+
+/* For when it's used in full page mode */
+.messaging-widget.chat-page-mode {
+  height: 100%;
+  max-height: none; /* Remove the max-height restriction */
+  border-radius: 0; /* Optional: remove border radius for full page */
+  box-shadow: none; /* Optional: remove shadow for full page */
+  border: none;
+}
+
+.mw-header {
+  padding: 16px 20px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #eef2f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mw-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mw-connection-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.mw-connection-status.connected {
+  color: #059669;
+  background-color: #d1fae5;
+}
+
+.mw-connection-status.connecting {
+  color: #d97706;
+  background-color: #fef3c7;
+}
+
+
+.mw-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.mw-status.connected .mw-status-dot {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 4px rgba(5, 150, 105, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+}
+
+.mw-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fafbfd;
+}
+
+.mw-loading-messages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.mw-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #94a3b8;
+  gap: 12px;
+}
+
+.mw-empty-state i {
+  font-size: 2.5rem;
+  color: #cbd5e1;
+}
+
+.mw-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mw-message-mine {
+  align-self: flex-end;
+}
+
+.mw-message-theirs {
+  align-self: flex-start;
+}
+
+.mw-message-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.mw-message-mine .mw-message-meta {
+  flex-direction: row-reverse;
+}
+
+.mw-sender-name {
+  font-weight: 600;
+  color: #334155;
+}
+
+.mw-message-bubble {
+  padding: 2px; /* Content will have its own padding */
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mw-message-mine .mw-message-bubble {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.mw-message-theirs .mw-message-bubble {
+  background-color: #ffffff;
+  color: #1e293b;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #eef2f6;
+}
+
+.mw-message-text {
+  padding: 10px 16px;
+}
+
+.mw-file-attachment {
+  padding: 8px;
+}
+
+.mw-file-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit !important;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.mw-message-mine .mw-file-link {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mw-file-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.mw-message-mine .mw-file-link:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Reaction Badge */
+.mw-reaction-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  z-index: 2;
+  border: 1px solid #f1f5f9;
+  cursor: help;
+}
+
+.mw-message-mine .mw-reaction-badge {
+  right: auto;
+  left: 10px;
+}
+
+.mw-emoji { font-size: 0.9rem; }
+.mw-reactor-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Reaction Picker */
+.mw-reaction-quick-picker {
+  display: flex;
+  background: white;
+  padding: 4px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: absolute;
+  top: -30px;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition: all 0.2s ease;
+  z-index: 10;
+  border: 1px solid #eef2f6;
+}
+
+.mw-message-wrapper:hover .mw-reaction-quick-picker {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Unified Input Area (Zoom Style) */
+.mw-input-area-unified {
+  padding: 12px 16px;
+  background: white;
+  border-top: 1px solid #eef2f6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0; /* Add this to prevent input from shrinking */
+}
+
+.mw-input-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mw-recipient-selector {
+  position: relative;
+}
+
+.mw-recipient-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.mw-recipient-btn:hover {
+  background: #e2e8f0;
+}
+
+.mw-recipient-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #eef2f6;
+  border-radius: 8px;
+  min-width: 200px;
+  margin-bottom: 8px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.mw-recipient-dropdown button {
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.mw-recipient-dropdown button:hover {
+  background: #f8fafc;
+}
+
+.recipient-scroll {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.mw-input-field-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.mw-input-unified {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.mw-btn-attach {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+/* Update this section in your MessagingWidget.css */
+
+.mw-btn-send {
+  background: none;
+  border: none;
+  color: #7aa5f5; /* Light blue color */
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease; /* Smooth transition on hover */
+}
+
+.mw-btn-send:hover:not(:disabled) {
+  color: #3b82f6; /* Darker blue on hover */
+}
+
+.mw-btn-send:disabled {
+  color: #cbd5e1; /* Gray when disabled */
+  cursor: not-allowed;
+}
+/* File Preview */
+.mw-file-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #eff6ff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #1e40af;
+}
+
+.mw-file-preview button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mw-time-recipient {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.mw-recipient-tag {
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.65rem;
+}
+
+.mw-recipient-tag.private {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.private-text {
+  color: #f59e0b; /* Bright Amber/Orange */
+  font-weight: 700;
+  text-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+.private-badge {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  border: 1px solid #fcd34d;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.mw-recipient-tag.everyone {
+  color: #94a3b8;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Adjust bubble spacing */
+.mw-message-bubble {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  position: relative;
+}
+/* Add this at the END of your MessagingWidget.css */
+.mw-input-field-wrapper .mw-btn-send,
+button.mw-btn-send,
+.mw-btn-send {
+  background: #e6f0ff !important; /* Light blue background */
+  border: 1px solid #b8d4ff !important;
+  color: #1e4f9e !important; /* Dark blue icon */
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.mw-input-field-wrapper .mw-btn-send:hover:not(:disabled),
+button.mw-btn-send:hover:not(:disabled) {
+  background: #d9e8ff !important;
+  border-color: #9bc0ff !important;
+}
+
+.mw-input-field-wrapper .mw-btn-send i,
+button.mw-btn-send i {
+  color: #1e4f9e !important;
+  font-size: 1.2rem !important;
+}
+
+/* Add this at the END of your MessagingWidget.css */
+
+/* Make the entire input wrapper light blue */
+.mw-input-field-wrapper {
+  background: #e6f0ff !important; /* Light blue background */
+  border: 1px solid #b8d4ff !important;
+  border-radius: 24px !important;
+  padding: 4px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Style the input text field */
+.mw-input-unified {
+  background: transparent !important;
+  color: #1e293b !important;
+}
+
+.mw-input-unified::placeholder {
+  color: #6f8fc0 !important; /* Slightly darker blue for placeholder text */
+}
+
+/* Style the attach button */
+.mw-btn-attach {
+  color: #1e4f9e !important;
+  background: transparent !important;
+}
+
+.mw-btn-attach:hover {
+  color: #0a2e5c !important;
+}
+
+/* Style the send button */
+.mw-btn-send {
+  color: #1e4f9e !important;
+  background: transparent !important;
+}
+
+.mw-btn-send:hover:not(:disabled) {
+  color: #0a2e5c !important;
+}
+
+/* Optional: Style the file preview area to match */
+.mw-file-preview {
+  background: #d9e8ff !important;
+  border: 1px solid #b8d4ff !important;
+  color: #1e4f9e !important;
+}
+
+.mw-file-preview button {
+  color: #1e4f9e !important;
+}
+/* Enhanced File Attachment Styles */
+.mw-file-attachment {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12px;
+}
+
+.mw-message-mine .mw-file-attachment {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mw-file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.mw-file-info i {
+  font-size: 1.4rem;
+  color: #3b82f6;
+}
+
+.mw-message-mine .mw-file-info i {
+  color: white;
+}
+
+.mw-file-info .file-name {
+  font-weight: 500;
+  word-break: break-word;
+  max-width: 200px;
+}
+
+.mw-file-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.mw-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.mw-view-btn {
+  background: #e6f0ff;
+  color: #1e4f9e;
+  border: 1px solid #b8d4ff;
+}
+
+.mw-view-btn:hover {
+  background: #d9e8ff;
+  border-color: #9bc0ff;
+}
+
+.mw-download-btn {
+  background: #10b981;
+  color: white;
+  border: 1px solid #0f9e6e;
+}
+
+.mw-download-btn:hover {
+  background: #0f9e6e;
+}
+
+.mw-message-mine .mw-view-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mw-message-mine .mw-view-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mw-message-mine .mw-download-btn {
+  background: white;
+  color: #10b981;
+  border: 1px solid white;
+}
+
+.mw-message-mine .mw-download-btn:hover {
+  background: #f0f0f0;
+}
+
+.mw-file-btn i {
+  font-size: 1rem;
+}
+
+.mw-file-btn span {
+  display: inline-block;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .mw-file-actions {
+    flex-direction: column;
+  }
+  
+  .mw-file-btn {
+    justify-content: center;
+  }
+  
+  .mw-file-info .file-name {
+    max-width: 150px;
+  }
+}

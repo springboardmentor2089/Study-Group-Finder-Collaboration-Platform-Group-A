@@ -1,0 +1,408 @@
+﻿/* =====================================
+   PROFILE EDIT - CLEAN & MODERN DESIGN
+   ===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-edit-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7ff 0%, #f0f3ff 100%);
+  font-family: 'Inter', sans-serif;
+  padding: 40px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile-edit-card {
+  max-width: 1000px;
+  width: 100%;
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  overflow: hidden;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Header ── */
+.pe-header {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  padding: 32px 40px;
+  color: white;
+}
+
+.pe-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.pe-header p {
+  font-size: 15px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* ── Alert Messages ── */
+.pe-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  margin: 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.pe-alert.error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.pe-alert.success {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.pe-alert i {
+  font-size: 20px;
+}
+
+.pe-alert span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ── Form ── */
+.pe-form {
+  padding: 32px 40px 40px;
+}
+
+/* ── Sections ── */
+.pe-section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.pe-section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pe-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.pe-section-title i {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.pe-section-title h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+/* ── Form Grids ── */
+.pe-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.pe-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── Form Fields ── */
+.pe-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pe-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.pe-field .required {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+.pe-field input,
+.pe-field textarea,
+.pe-field select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.pe-field input:hover,
+.pe-field textarea:hover,
+.pe-field select:hover {
+  border-color: #cbd5e1;
+  background: white;
+}
+
+.pe-field input:focus,
+.pe-field textarea:focus,
+.pe-field select:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.pe-field input.disabled-field,
+.pe-field input:disabled {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.pe-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.pe-field input::placeholder,
+.pe-field textarea::placeholder {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ── Form Actions ── */
+.pe-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px solid #f1f5f9;
+}
+
+.pe-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.pe-btn-primary {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  box-shadow: 0 8px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.pe-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+}
+
+.pe-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pe-btn-secondary {
+  background: white;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+}
+
+.pe-btn-secondary:hover:not(:disabled) {
+  border-color: #6366f1;
+  color: #6366f1;
+  background: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.pe-btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Loading State ── */
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #f5f7ff 0%, #f0f3ff 100%);
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-small {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 768px) {
+  .profile-edit-page {
+    padding: 20px 16px;
+  }
+
+  .pe-header {
+    padding: 24px 20px;
+  }
+
+  .pe-header h1 {
+    font-size: 24px;
+  }
+
+  .pe-header p {
+    font-size: 14px;
+  }
+
+  .pe-alert {
+    padding: 14px 20px;
+  }
+
+  .pe-form {
+    padding: 24px 20px;
+  }
+
+  .pe-grid-2,
+  .pe-grid-3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pe-section {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+  }
+
+  .pe-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .pe-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+}
+
+/* ── Small screens ── */
+@media (max-width: 480px) {
+  .profile-edit-page {
+    padding: 12px;
+  }
+
+  .profile-edit-card {
+    border-radius: 24px;
+  }
+
+  .pe-header {
+    padding: 20px 16px;
+  }
+
+  .pe-header h1 {
+    font-size: 22px;
+  }
+
+  .pe-form {
+    padding: 20px 16px;
+  }
+
+  .pe-section-title i {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .pe-section-title h2 {
+    font-size: 16px;
+  }
+
+  .pe-field input,
+  .pe-field textarea,
+  .pe-field select {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}

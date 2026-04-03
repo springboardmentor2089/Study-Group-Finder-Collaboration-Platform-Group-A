@@ -1,0 +1,513 @@
+﻿/* =====================
+   Page Shell
+   ===================== */
+.create-group-page {
+  min-height: 100vh;
+  background: var(--surface);
+  font-family: var(--font);
+}
+
+/* =====================
+   Header
+   ===================== */
+.cg-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #a855f7 100%);
+  color: white;
+  padding: 0;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 68px;
+  display: flex;
+  align-items: center;
+}
+
+.cg-header-inner {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cg-header-inner h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.cg-back-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  padding: 8px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+  font-family: var(--font);
+}
+
+.cg-back-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateX(-2px);
+}
+
+/* =====================
+   Container / Card
+   ===================== */
+.cg-container {
+  max-width: 640px;
+  margin: 52px auto;
+  padding: 0 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+.cg-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  overflow: hidden;
+}
+
+.cg-card-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #a855f7 100%);
+  color: white;
+  padding: 32px 36px 28px;
+}
+
+.cg-card-header h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.cg-card-header p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.88;
+  font-weight: 400;
+}
+
+/* =====================
+   Form
+   ===================== */
+.cg-form {
+  padding: 32px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =====================
+   Field
+   ===================== */
+.cg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.cg-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+}
+
+.cg-field input,
+.cg-field textarea,
+.cg-field select {
+  border: 2px solid #e8ecf8;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: var(--font);
+  color: var(--text);
+  background: #f8f9fe;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cg-field input:focus,
+.cg-field textarea:focus,
+.cg-field select:focus {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.cg-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.cg-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.cg-error-text {
+  font-size: 12.5px;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* =====================
+   Privacy Toggle
+   ===================== */
+
+/* Wrapper */
+.cg-toggle-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cg-toggle-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Track — the pill slider container */
+.cg-toggle-track {
+  position: relative;
+  display: flex;
+  background: #f1f3fb;
+  border: 2px solid #e8ecf8;
+  border-radius: 14px;
+  padding: 5px;
+  gap: 4px;
+}
+
+/* Sliding background pill */
+.cg-toggle-pill {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  width: calc(50% - 7px);
+  border-radius: 10px;
+  background: var(--gradient);
+  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.35);
+  transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cg-pill-left  { left: 5px; }
+.cg-pill-right { left: calc(50% + 2px); }
+
+/* Each option button */
+.cg-toggle-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  transition: color 0.2s;
+  font-family: var(--font);
+}
+
+.cg-toggle-btn-active {
+  color: white;
+}
+
+.cg-toggle-icon {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.cg-toggle-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Hint text below */
+.cg-toggle-hint {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Legacy selectors kept for safety */
+.cg-privacy-group { display: flex; gap: 14px; }
+.cg-privacy-option { flex: 1; }
+.cg-privacy-option input[type="radio"] { display: none; }
+.cg-privacy-icon { font-size: 20px; }
+
+/* =====================
+   Alerts
+   ===================== */
+.cg-success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.04));
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cg-error-msg {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.04));
+  border: 1.5px solid rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =====================
+   Submit Button
+   ===================== */
+.cg-submit-btn {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.35);
+  width: 100%;
+  margin-top: 4px;
+}
+
+.cg-submit-btn:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.45);
+}
+
+.cg-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =====================
+   Courses Section
+   ===================== */
+.cg-course-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cg-course-section label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.cg-course-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cg-course-chip {
+  border: 2px solid #e8ecf8;
+  border-radius: 30px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f8f9fe;
+  color: var(--text-light);
+  font-family: var(--font);
+}
+
+.cg-course-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.cg-course-chip.selected {
+  background: var(--gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.3);
+}
+
+/* =====================
+   Steps / Sections
+   ===================== */
+.cg-section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e8ecf8, transparent);
+  margin: 0;
+}
+
+/* =====================
+   Responsive
+   ===================== */
+@media (max-width: 680px) {
+  .cg-form {
+    padding: 24px 20px 28px;
+  }
+
+  .cg-card-header {
+    padding: 24px 20px 20px;
+  }
+
+  .cg-privacy-group {
+    flex-direction: column;
+  }
+
+  .cg-container {
+    margin: 28px auto;
+  }
+}
+
+/* =====================
+   Form inputs (scoped)
+   ===================== */
+.cg-input,
+.cg-textarea,
+.cg-select {
+  display: block;
+  width: 100%;
+  border: 2px solid #e8ecf8;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: var(--font);
+  color: var(--text);
+  background: #f8f9fe;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cg-input:focus,
+.cg-textarea:focus,
+.cg-select:focus {
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.cg-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.cg-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.cg-input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.08) !important;
+  background: #fff8f8 !important;
+}
+
+.cg-field-error {
+  font-size: 12.5px;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 2px;
+  display: block;
+}
+
+.cg-required {
+  color: #ef4444;
+  margin-left: 3px;
+}
+
+/* =====================
+   Feedback messages
+   ===================== */
+.cg-message {
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cg-message.cg-success {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+}
+
+.cg-message.cg-error {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1.5px solid rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+}
+
+/* =====================
+   Spinner / Loading
+   ===================== */
+.cg-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cg-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
