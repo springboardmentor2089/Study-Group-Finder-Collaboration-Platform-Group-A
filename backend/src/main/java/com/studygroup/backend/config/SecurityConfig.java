@@ -39,12 +39,9 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                     .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/ws/**").permitAll()
-<<<<<<< HEAD
                     .requestMatchers("/uploads/**").permitAll()
                     .requestMatchers("/api/files/**").permitAll()
                     
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
                     .anyRequest().authenticated()
             )
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
@@ -59,11 +56,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-<<<<<<< HEAD
         configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:5174"));
-=======
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

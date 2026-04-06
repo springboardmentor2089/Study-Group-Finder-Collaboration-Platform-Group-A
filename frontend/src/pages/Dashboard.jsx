@@ -40,14 +40,10 @@ function Dashboard() {
     fetchData();
   }, [token]);
 
-<<<<<<< HEAD
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
-=======
-  const handleLogout = () => { logout(); navigate("/login"); };
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 
   if (loading) {
     return (
@@ -62,12 +58,8 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-<<<<<<< HEAD
 
       {/* HEADER */}
-=======
-      {/* Header - Keeping your original content */}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
       <header className="dashboard-header">
         <div className="header-content">
           <div className="header-left">
@@ -75,7 +67,6 @@ function Dashboard() {
               <i className="bi bi-list"></i>
             </button>
             <div className="header-brand">
-<<<<<<< HEAD
               <div className="header-brand-icon">
                 <i className="bi bi-mortarboard-fill" />
               </div>
@@ -83,12 +74,6 @@ function Dashboard() {
             </div>
           </div>
 
-=======
-              <div className="header-brand-icon"><i className="bi bi-mortarboard-fill" /></div>
-              <h1>StudyGroup <span>Finder</span></h1>
-            </div>
-          </div>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           <div className="header-nav">
             <button className="btn-nav" onClick={() => navigate("/groups")}>
               <i className="bi bi-search" /> Browse Groups
@@ -99,49 +84,25 @@ function Dashboard() {
             <button className="btn-nav" onClick={() => navigate("/courses")}>
               <i className="bi bi-book-fill" /> My Courses
             </button>
-<<<<<<< HEAD
             <NotificationBell /> {/* Only this, no extra bell icon */}
-=======
-            <button className="btn-nav notification-btn">
-        <i className="bi bi-bell-fill"></i>
-        <NotificationBell />
-      </button>
-            
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           </div>
         </div>
       </header>
 
-<<<<<<< HEAD
       {/* PROFILE SIDEBAR */}
       <div className={`profile-sidebar ${profileOpen ? "open" : ""}`}>
-=======
-      {/* Slide-out Profile Panel */}
-      <div className={`profile-sidebar ${profileOpen ? 'open' : ''}`}>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         <div className="profile-sidebar-header">
           <button className="close-btn" onClick={() => setProfileOpen(false)}>
             <i className="bi bi-x-lg"></i>
           </button>
           <h3>Your Profile</h3>
         </div>
-<<<<<<< HEAD
 
         <div className="profile-sidebar-content">
           <div className="sidebar-avatar">
             {userInfo?.name?.charAt(0).toUpperCase() || "U"}
           </div>
 
-=======
-        
-        <div className="profile-sidebar-content">
-          {/* Profile Avatar */}
-          <div className="sidebar-avatar">
-            {userInfo?.name?.charAt(0).toUpperCase() || "U"}
-          </div>
-          
-          {/* Profile Info */}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           <div className="sidebar-info">
             <h2>{userInfo?.name || "User"}</h2>
             <p className="email">{userInfo?.email}</p>
@@ -152,39 +113,25 @@ function Dashboard() {
             )}
           </div>
 
-<<<<<<< HEAD
-=======
-          {/* Profile Bio */}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           {userInfo?.bio && (
             <div className="sidebar-bio">
               <p>{userInfo.bio}</p>
             </div>
           )}
 
-<<<<<<< HEAD
           {userInfo?.enrolledCourses?.length > 0 && (
-=======
-          {/* Enrolled Courses in Sidebar */}
-          {userInfo?.enrolledCourses && userInfo.enrolledCourses.length > 0 && (
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
             <div className="sidebar-courses">
               <h4>My Enrolled Courses</h4>
               <div className="sidebar-courses-list">
                 {userInfo.enrolledCourses.map((course) => (
-<<<<<<< HEAD
                   <span key={course.id} className="course-tag">
                     {course.courseName}
                   </span>
-=======
-                  <span key={course.id} className="course-tag">{course.courseName}</span>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
                 ))}
               </div>
             </div>
           )}
 
-<<<<<<< HEAD
           <div className="sidebar-actions">
             <button
               className="sidebar-btn"
@@ -196,14 +143,6 @@ function Dashboard() {
               className="sidebar-btn"
               onClick={() => navigate("/courses")}
             >
-=======
-          {/* Sidebar Actions */}
-          <div className="sidebar-actions">
-            <button className="sidebar-btn" onClick={() => navigate("/profile-edit")}>
-              <i className="bi bi-pencil-fill" /> Edit Profile
-            </button>
-            <button className="sidebar-btn" onClick={() => navigate("/courses")}>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
               <i className="bi bi-book-fill" /> Manage Courses
             </button>
             <button className="sidebar-btn logout" onClick={handleLogout}>
@@ -213,7 +152,6 @@ function Dashboard() {
         </div>
       </div>
 
-<<<<<<< HEAD
       {profileOpen && (
         <div className="overlay" onClick={() => setProfileOpen(false)}></div>
       )}
@@ -233,31 +171,10 @@ function Dashboard() {
               <h1 className="hero-title">
                 Together we can learn anything.
               </h1>
-=======
-      {/* Overlay when profile is open */}
-      {profileOpen && <div className="overlay" onClick={() => setProfileOpen(false)}></div>}
-
-      {/* Main Content */}
-      <div className="main-container">
-        {/* SECTION 1: Hero Image - Wide with rounded bottom corners only */}
-        <section className="hero-section">
-          <div className="hero-image-wrapper">
-            <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
-              alt="Students studying together online on laptops"
-              className="hero-image"
-            />
-            <div className="hero-overlay-text">
-              <h1 className="hero-title">Together we can learn anything.</h1>
-              <p className="hero-login-text">
-                Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); navigate("/login"); }}>Sign in</a>
-              </p>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
             </div>
           </div>
         </section>
 
-<<<<<<< HEAD
         {/* GROUPS */}
         <section className="groups-section">
           <div className="section-header">
@@ -272,17 +189,6 @@ function Dashboard() {
               className="browse-btn"
               onClick={() => navigate("/groups")}
             >
-=======
-        {/* SECTION 2: My Study Groups */}
-        <section className="groups-section">
-          <div className="section-header">
-            <h2>My Study Groups</h2>
-            <p className="section-subtitle">Groups you've joined or created</p>
-          </div>
-
-          <div className="browse-wrapper">
-            <button className="browse-btn" onClick={() => navigate("/groups")}>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
               <i className="bi bi-search"></i>
               Browse All Groups
             </button>
@@ -290,7 +196,6 @@ function Dashboard() {
 
           {error && <div className="error-message">⚠️ {error}</div>}
 
-<<<<<<< HEAD
           <div className="groups-grid">
             {myGroups.map((group) => (
               <div
@@ -351,116 +256,6 @@ function Dashboard() {
           </div>
         </section>
       </div>
-=======
-          {myGroups.length === 0 && !error ? (
-            <div className="empty-state">
-              <i className="bi bi-collection"></i>
-              <p>No groups joined yet</p>
-            </div>
-          ) : (
-            <div className="groups-grid">
-              {myGroups.map((group) => (
-                <div
-                  key={group.id}
-                  className="group-card"
-                  onClick={() => navigate(`/groups/${group.id}`)}
-                >
-                  <div className="group-card-accent"></div>
-                  <div className="group-card-content">
-                    <div className="group-icon">
-                      {group.name?.charAt(0)?.toUpperCase() || '📚'}
-                    </div>
-                    <h3>{group.name}</h3>
-                    <p className="group-description">{group.description}</p>
-                    <div className="group-meta">
-                      <span><i className="bi bi-people"></i> {group.memberCount || 0} members</span>
-                      {group.isCreator && (
-                        <span className="creator-badge">
-                          <i className="bi bi-shield-check"></i> Admin
-                        </span>
-                      )}
-                    </div>
-                    <button className="group-link" onClick={(e) => { e.stopPropagation(); navigate(`/groups/${group.id}`); }}>
-                      View Group <i className="bi bi-arrow-right"></i>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Create Group Card - Inside Groups Section */}
-          <div className="create-card" onClick={() => navigate("/create-group")}>
-            <div className="create-card-content">
-              <div className="create-icon">
-                <i className="bi bi-plus-circle-fill"></i>
-              </div>
-              <div className="create-text">
-                <h3>Create New Study Group</h3>
-                <p>Start your own learning community</p>
-              </div>
-              <button className="create-link">
-                Create <i className="bi bi-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3: My Courses */}
-        <section className="courses-main-section">
-          <div className="section-header">
-            <h2>My Courses</h2>
-            <p className="section-subtitle">Your enrolled subjects</p>
-          </div>
-
-          {userInfo?.enrolledCourses && userInfo.enrolledCourses.length > 0 ? (
-            <div className="courses-grid">
-              {userInfo.enrolledCourses.map((course) => (
-                <div key={course.id} className="course-card">
-                  <div className="course-card-content">
-                    <div className="course-icon">
-                      <i className="bi bi-book"></i>
-                    </div>
-                    <h3>{course.courseName}</h3>
-                    <p className="course-code">{course.courseCode || 'Active Course'}</p>
-                    <button className="course-link" onClick={() => navigate("/courses")}>
-                      View Course <i className="bi bi-arrow-right"></i>
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="empty-courses">
-              <i className="bi bi-journal-bookmark"></i>
-              <p>No courses enrolled yet</p>
-              <button className="secondary-btn" onClick={() => navigate("/courses")}>
-                Browse Courses
-              </button>
-            </div>
-          )}
-        </section>
-      </div>
-
-      {/* SECTION 4: Footer - Light Grey */}
-      <footer className="dashboard-footer">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <i className="bi bi-mortarboard-fill"></i>
-            <span>StudyGroup Finder</span>
-          </div>
-          <div className="footer-links">
-            <a href="#" onClick={(e) => e.preventDefault()}>About</a>
-            <a href="#" onClick={(e) => e.preventDefault()}>Privacy</a>
-            <a href="#" onClick={(e) => e.preventDefault()}>Terms</a>
-            <a href="#" onClick={(e) => e.preventDefault()}>Contact</a>
-          </div>
-          <div className="footer-copyright">
-            © {new Date().getFullYear()} StudyGroup Finder. All rights reserved.
-          </div>
-        </div>
-      </footer>
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     </div>
   );
 }

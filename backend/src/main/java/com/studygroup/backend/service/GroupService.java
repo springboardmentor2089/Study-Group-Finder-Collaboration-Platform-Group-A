@@ -14,18 +14,12 @@ import com.studygroup.backend.entity.Notification;
 import com.studygroup.backend.entity.Notification.NotificationType;
 import com.studygroup.backend.entity.StudyGroup;
 import com.studygroup.backend.entity.User;
-<<<<<<< HEAD
 import com.studygroup.backend.repository.ChatMessageRepository;
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 import com.studygroup.backend.repository.CourseRepository;
 import com.studygroup.backend.repository.JoinRequestRepository;
 import com.studygroup.backend.repository.NotificationRepository;
 import com.studygroup.backend.repository.StudyGroupRepository;
-<<<<<<< HEAD
 import com.studygroup.backend.repository.StudySessionRepository;
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 import com.studygroup.backend.repository.UserRepository;
 
 @Service
@@ -36,33 +30,23 @@ public class GroupService {
     private final CourseRepository courseRepository;
     private final JoinRequestRepository joinRequestRepository;
     private final NotificationRepository notificationRepository;
-<<<<<<< HEAD
     private final ChatMessageRepository chatMessageRepository;
     private final StudySessionRepository studySessionRepository;
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 
     public GroupService(StudyGroupRepository groupRepository,
                         UserRepository userRepository,
                         CourseRepository courseRepository,
                         JoinRequestRepository joinRequestRepository,
-<<<<<<< HEAD
                         NotificationRepository notificationRepository,
                         ChatMessageRepository chatMessageRepository,
                         StudySessionRepository studySessionRepository) {
-=======
-                        NotificationRepository notificationRepository) {
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
         this.courseRepository = courseRepository;
         this.joinRequestRepository = joinRequestRepository;
         this.notificationRepository = notificationRepository;
-<<<<<<< HEAD
         this.chatMessageRepository = chatMessageRepository;
         this.studySessionRepository = studySessionRepository;
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     }
 
     public StudyGroup createGroup(String creatorEmail, Map<String, Object> body) {
@@ -80,7 +64,6 @@ public class GroupService {
         group.getMembers().add(creator);
 
         Object courseIdObj = body.get("courseId");
-<<<<<<< HEAD
         if (courseIdObj != null && !courseIdObj.toString().isBlank()) {
             try {
                 Long courseId = Long.valueOf(courseIdObj.toString());
@@ -93,11 +76,6 @@ public class GroupService {
                     throw new RuntimeException("You must be enrolled in the course to create a study group for it.");
                 }
                 
-=======
-        if (courseIdObj != null) {
-            try {
-                Long courseId = Long.valueOf(courseIdObj.toString());
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
                 courseRepository.findById(courseId).ifPresent(group::setCourse);
             } catch (NumberFormatException ignored) {}
         }
@@ -141,17 +119,12 @@ public class GroupService {
         m.put("createdAt", group.getCreatedAt());
         m.put("memberCount", group.getMembers().size());
 
-<<<<<<< HEAD
         // Check if the current user is the creator
         boolean isCreator = group.getCreator() != null && group.getCreator().getId().equals(user.getId());
         
         boolean isAdmin = user.getRole() != null && user.getRole().equals("ROLE_ADMIN");
         m.put("isCreator", isCreator);
         m.put("isAdmin", isAdmin);
-=======
-        boolean isCreator = group.getCreator() != null && group.getCreator().getId().equals(user.getId());
-        m.put("isCreator", isCreator);
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 
         // Creator is always considered a member
         boolean isMember = isCreator || group.getMembers().stream().anyMatch(mem -> mem.getId().equals(user.getId()));
@@ -358,7 +331,6 @@ public class GroupService {
         n.setMessage(message);
         notificationRepository.save(n);
     }
-<<<<<<< HEAD
 
     @Transactional
     public void deleteGroup(Long groupId, String creatorEmail) {
@@ -387,6 +359,3 @@ public class GroupService {
         groupRepository.delete(group);
     }
 }
-=======
-}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b

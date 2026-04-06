@@ -9,16 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.studygroup.backend.entity.Notification;
 import com.studygroup.backend.entity.Notification.NotificationStatus;
-<<<<<<< HEAD
 import com.studygroup.backend.entity.Notification.NotificationType;
 import com.studygroup.backend.entity.StudyGroup;
 import com.studygroup.backend.entity.User;
 import com.studygroup.backend.repository.NotificationRepository;
 import com.studygroup.backend.repository.StudyGroupRepository;
-=======
-import com.studygroup.backend.entity.User;
-import com.studygroup.backend.repository.NotificationRepository;
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 import com.studygroup.backend.repository.UserRepository;
 
 @Service
@@ -26,7 +21,6 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
     private final UserRepository userRepository;
-<<<<<<< HEAD
     private final StudyGroupRepository studyGroupRepository;
 
     public NotificationService(NotificationRepository notificationRepository,
@@ -62,30 +56,6 @@ public class NotificationService {
 
     public void markAllRead(String userEmail) {
         System.out.println("🔔 Marking all notifications as read for user: " + userEmail);
-=======
-
-    public NotificationService(NotificationRepository notificationRepository,
-                               UserRepository userRepository) {
-        this.notificationRepository = notificationRepository;
-        this.userRepository = userRepository;
-    }
-
-    public List<Map<String, Object>> getNotifications(String userEmail) {
-        User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        return notificationRepository.findByUserIdOrderByCreatedAtDesc(user.getId())
-                .stream().map(this::toNotifMap).collect(Collectors.toList());
-    }
-
-    public long getUnreadCount(String userEmail) {
-        User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        return notificationRepository.countByUserIdAndStatus(user.getId(), NotificationStatus.UNREAD);
-    }
-
-    public void markAllRead(String userEmail) {
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -94,26 +64,19 @@ public class NotificationService {
                 .filter(n -> n.getStatus() == NotificationStatus.UNREAD)
                 .collect(Collectors.toList());
 
-<<<<<<< HEAD
         System.out.println("📋 Marking " + unread.size() + " notifications as read");
         
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         unread.forEach(n -> n.setStatus(NotificationStatus.READ));
         notificationRepository.saveAll(unread);
     }
 
     public void markRead(Long notifId, String userEmail) {
-<<<<<<< HEAD
         System.out.println("🔔 Marking notification " + notifId + " as read for user: " + userEmail);
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         Notification n = notificationRepository.findById(notifId)
                 .orElseThrow(() -> new RuntimeException("Notification not found"));
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-<<<<<<< HEAD
         if (!n.getUser().getId().equals(user.getId())) {
             System.out.println("❌ User not authorized to mark this notification as read");
             throw new RuntimeException("Not authorized.");
@@ -218,19 +181,11 @@ public class NotificationService {
         notificationRepository.save(notif);
         
         System.out.println("✅ Created notification for receiver: " + receiverEmail);
-=======
-        if (!n.getUser().getId().equals(user.getId()))
-            throw new RuntimeException("Not authorized.");
-
-        n.setStatus(NotificationStatus.READ);
-        notificationRepository.save(n);
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     }
 
     private Map<String, Object> toNotifMap(Notification n) {
         Map<String, Object> m = new HashMap<>();
         m.put("id", n.getId());
-<<<<<<< HEAD
         m.put("type", n.getType().toString());
         m.put("message", n.getMessage());
         m.put("status", n.getStatus().toString());
@@ -238,12 +193,3 @@ public class NotificationService {
         return m;
     }
 }
-=======
-        m.put("type", n.getType());
-        m.put("message", n.getMessage());
-        m.put("status", n.getStatus());
-        m.put("createdAt", n.getCreatedAt());
-        return m;
-    }
-}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b

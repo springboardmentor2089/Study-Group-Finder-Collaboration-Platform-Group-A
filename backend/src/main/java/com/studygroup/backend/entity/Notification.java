@@ -29,22 +29,14 @@ public class Notification {
     private User user;
 
     @Enumerated(EnumType.STRING)
-<<<<<<< HEAD
     @Column(nullable = false, length = 20)  // Increased length to 20
-=======
-    @Column(nullable = false)
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     private NotificationType type;
 
     @Column(nullable = false, length = 500)
     private String message;
 
     @Enumerated(EnumType.STRING)
-<<<<<<< HEAD
     @Column(nullable = false, length = 10)  // Added length for status too
-=======
-    @Column(nullable = false)
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     private NotificationStatus status = NotificationStatus.UNREAD;
 
     private LocalDateTime createdAt;
@@ -55,23 +47,15 @@ public class Notification {
     }
 
     public enum NotificationType {
-<<<<<<< HEAD
         REMINDER, 
         INVITATION, 
         JOIN_REQUEST, 
         JOIN_ACCEPTED, 
         JOIN_REJECTED, 
         MESSAGE
-=======
-        REMINDER, INVITATION, JOIN_REQUEST, JOIN_ACCEPTED, JOIN_REJECTED
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     }
 
     public enum NotificationStatus {
         READ, UNREAD
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b

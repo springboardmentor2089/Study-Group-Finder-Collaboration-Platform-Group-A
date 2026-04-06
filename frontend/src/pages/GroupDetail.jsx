@@ -1,17 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-<<<<<<< HEAD
 import { useParams, useNavigate, Link } from "react-router-dom";
-=======
-import { useParams, useNavigate } from "react-router-dom";
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import api from "../api";
 import useAuth from "../context/useAuth";
-<<<<<<< HEAD
 import MessagingWidget from "../components/MessagingWidget";
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 import "./GroupDetail.css";
 
 export default function GroupDetail() {
@@ -30,6 +23,7 @@ export default function GroupDetail() {
   const [sessions, setSessions] = useState([]);
   const [showSessionForm, setShowSessionForm] = useState(false);
   const [sessionForm, setSessionForm] = useState({ title: "", description: "", sessionDate: "" });
+  const today = new Date().toISOString().slice(0,16);
 
   // Active tab
   const [activeTab, setActiveTab] = useState("members");
@@ -123,7 +117,6 @@ export default function GroupDetail() {
     }
   };
 
-<<<<<<< HEAD
   // ── Delete group ──
   const handleDeleteGroup = async () => {
     if (!window.confirm("Are you sure you want to delete this group? This action cannot be undone.")) return;
@@ -135,8 +128,6 @@ export default function GroupDetail() {
     }
   };
 
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
   // ── Sessions ──
   const handleCreateSession = async (e) => {
     e.preventDefault();
@@ -201,14 +192,11 @@ export default function GroupDetail() {
             {group.isCreator && (
               <span className="gd-creator-tag"><i className="bi bi-shield-check" /> Admin</span>
             )}
-<<<<<<< HEAD
             {(group.isCreator || group.isAdmin) && (
               <button className="btn btn-sm btn-danger ms-2" onClick={handleDeleteGroup}>
                 <i className="bi bi-trash"></i> Delete Group
               </button>
             )}
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
             <span className="gd-member-count">
               <i className="bi bi-people-fill" /> {members.length} member{members.length !== 1 ? "s" : ""}
             </span>
@@ -218,21 +206,14 @@ export default function GroupDetail() {
 
       {/* Tabs */}
       <div className="gd-tabs">
-<<<<<<< HEAD
         {["members", "chat", "sessions", ...(group.isCreator || group.isAdmin ? ["requests"] : [])].map((tab) => (
-=======
-        {["members", "sessions", ...(group.isCreator ? ["requests"] : [])].map((tab) => (
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           <button
             key={tab}
             className={`gd-tab ${activeTab === tab ? "gd-tab-active" : ""}`}
             onClick={() => setActiveTab(tab)}
           >
             {tab === "members" && <><i className="bi bi-people-fill" /> Members <span className="badge bg-primary ms-1">{members.length}</span></>}
-<<<<<<< HEAD
             {tab === "chat" && <><i className="bi bi-chat-dots-fill" /> Chat</>}
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
             {tab === "sessions" && <><i className="bi bi-calendar-event-fill" /> Sessions <span className="badge bg-primary ms-1">{sessions.length}</span></>}
             {tab === "requests" && <><i className="bi bi-person-plus-fill" /> Requests{requests.length > 0 && <span className="badge bg-danger ms-1">{requests.length}</span>}</>}
           </button>
@@ -259,11 +240,7 @@ export default function GroupDetail() {
                 </span>
                 {group.isCreator && member.role !== "Admin" && (
                   <button
-<<<<<<< HEAD
                     className="gd-remove-btn me-2"
-=======
-                    className="gd-remove-btn"
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
                     onClick={() => handleRemoveMember(member.id)}
                   >
                     <i className="bi bi-person-x" /> Remove
@@ -274,7 +251,6 @@ export default function GroupDetail() {
           </div>
         )}
 
-<<<<<<< HEAD
         {/* ── CHAT TAB ── */}
         {activeTab === "chat" && (
           <div className="gd-chat-container" style={{ margin: "20px 0", height: "600px", border: "1px solid #eee", borderRadius: "12px", overflow: "hidden" }}>
@@ -300,8 +276,6 @@ export default function GroupDetail() {
           </div>
         )}
 
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
         {/* ── SESSIONS TAB ── */}
         {activeTab === "sessions" && (
           <div className="gd-sessions">
@@ -335,6 +309,7 @@ export default function GroupDetail() {
                 />
                 <input
                   type="datetime-local"
+                  min={today}
                   value={sessionForm.sessionDate}
                   onChange={(e) => setSessionForm({ ...sessionForm, sessionDate: e.target.value })}
                   required
@@ -380,13 +355,8 @@ export default function GroupDetail() {
           </div>
         )}
 
-<<<<<<< HEAD
         {/* ── JOIN REQUESTS TAB (creator/admin only) ── */}
         {activeTab === "requests" && (group.isCreator || group.isAdmin) && (
-=======
-        {/* ── JOIN REQUESTS TAB (creator only) ── */}
-        {activeTab === "requests" && group.isCreator && (
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           <div className="gd-requests">
             {requests.length === 0 && (
               <div className="gd-empty-msg">

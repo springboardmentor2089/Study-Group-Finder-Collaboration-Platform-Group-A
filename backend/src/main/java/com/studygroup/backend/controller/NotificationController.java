@@ -62,8 +62,4 @@ public class NotificationController {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b

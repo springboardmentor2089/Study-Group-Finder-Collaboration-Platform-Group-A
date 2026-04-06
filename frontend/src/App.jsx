@@ -8,10 +8,7 @@ import CreateGroup from "./pages/CreateGroup";
 import GroupList from "./pages/GroupList";
 import GroupDetail from "./pages/GroupDetail";
 import PrivateRoute from "./components/PrivateRoute";
-<<<<<<< HEAD
 import ChatPage from "./pages/ChatPage";
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
 
 export default function App() {
   return (
@@ -29,10 +26,7 @@ export default function App() {
         <Route path="/create-group" element={<PrivateRoute><CreateGroup /></PrivateRoute>} />
         <Route path="/groups" element={<PrivateRoute><GroupList /></PrivateRoute>} />
         <Route path="/groups/:id" element={<PrivateRoute><GroupDetail /></PrivateRoute>} />
-<<<<<<< HEAD
         <Route path="/chat" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
       </Routes>
     </BrowserRouter>
   );

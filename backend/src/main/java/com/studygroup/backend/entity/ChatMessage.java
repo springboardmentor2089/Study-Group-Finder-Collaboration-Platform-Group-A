@@ -23,7 +23,6 @@ public class ChatMessage {
     private Long id;
 
     @ManyToOne
-<<<<<<< HEAD
     @JoinColumn(name = "group_id") // Nullable for direct messages
     private StudyGroup group;
 
@@ -47,18 +46,6 @@ public class ChatMessage {
     @Column(name = "is_private")
     private Boolean isPrivate = false;
 
-=======
-    @JoinColumn(name = "group_id", nullable = false)
-    private StudyGroup group;
-
-    @ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
-    private User sender;
-
-    @Column(nullable = false, length = 2000)
-    private String content;
-
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     private LocalDateTime sentAt;
 
     @PrePersist

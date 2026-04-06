@@ -10,7 +10,6 @@ export default function NotificationBell() {
 
   const fetchCount = async () => {
     try {
-<<<<<<< HEAD
       console.log("🔔 Fetching notification count...");
       const res = await api.get("/api/notifications/unread-count");
       console.log("📊 Unread count:", res.data.count);
@@ -18,16 +17,10 @@ export default function NotificationBell() {
     } catch (error) {
       console.error("❌ Error fetching notification count:", error);
     }
-=======
-      const res = await api.get("/api/notifications/unread-count");
-      setCount(res.data.count || 0);
-    } catch {}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
   };
 
   const fetchNotifications = async () => {
     try {
-<<<<<<< HEAD
       console.log("🔔 Fetching notifications...");
       const res = await api.get("/api/notifications");
       console.log("📋 Notifications:", res.data);
@@ -41,16 +34,6 @@ export default function NotificationBell() {
   useEffect(() => {
     fetchCount();
     const interval = setInterval(fetchCount, 5000); // poll every 5 seconds
-=======
-      const res = await api.get("/api/notifications");
-      setNotifications(res.data);
-    } catch {}
-  };
-
-  useEffect(() => {
-    fetchCount();
-    const interval = setInterval(fetchCount, 30000); // poll every 30s
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
     return () => clearInterval(interval);
   }, []);
 
@@ -74,13 +57,9 @@ export default function NotificationBell() {
       await api.post("/api/notifications/read-all");
       setCount(0);
       setNotifications(prev => prev.map(n => ({ ...n, status: "READ" })));
-<<<<<<< HEAD
     } catch (error) {
       console.error("❌ Error marking all as read:", error);
     }
-=======
-    } catch {}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
   };
 
   const typeIcon = (type) => {
@@ -90,10 +69,7 @@ export default function NotificationBell() {
       case "JOIN_REQUEST": return <i className="bi bi-person-plus-fill" />;
       case "JOIN_ACCEPTED":return <i className="bi bi-check-circle-fill" />;
       case "JOIN_REJECTED":return <i className="bi bi-x-circle-fill" />;
-<<<<<<< HEAD
       case "MESSAGE":      return <i className="bi bi-chat-fill" />;
-=======
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
       default:             return <i className="bi bi-megaphone-fill" />;
     }
   };
@@ -116,7 +92,6 @@ export default function NotificationBell() {
             )}
           </div>
           <div className="nb-list">
-<<<<<<< HEAD
             {notifications.length === 0 ? (
               <p className="nb-empty">No notifications yet.</p>
             ) : (
@@ -140,32 +115,9 @@ export default function NotificationBell() {
                 </div>
               ))
             )}
-=======
-            {notifications.length === 0 && (
-              <p className="nb-empty">No notifications yet.</p>
-            )}
-            {notifications.map((n) => (
-              <div key={n.id} className={`nb-item ${n.status === "UNREAD" ? "nb-unread" : ""}`}>
-                <div className="nb-icon-wrap">
-                  <span className="nb-icon">{typeIcon(n.type)}</span>
-                </div>
-                <div className="nb-body">
-                  <p>{n.message}</p>
-                  <span className="nb-time">
-                    {n.createdAt ? new Date(n.createdAt).toLocaleString([], { dateStyle: "short", timeStyle: "short" }) : ""}
-                  </span>
-                </div>
-                {n.status === "UNREAD" && <span className="nb-dot" />}
-              </div>
-            ))}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
           </div>
         </div>
       )}
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f24badb73c4eef9d78621ade0d58b2757aeb202b
